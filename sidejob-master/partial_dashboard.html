@@ -1,0 +1,244 @@
+	<link rel="stylesheet" href="/css/slider.css">
+	
+	<script src="/js/bootstrap-slider.js"></script>
+
+	<div class="clearfix"></div>
+
+	<section class="main-content">
+		<div class="container-fluid">
+			<div class="col-md-3">
+				<div class="filter-box">
+					<div class="filter-content">
+						<div class="filter-content-section">
+							<h4 class="title">Need Help?</h4>
+							<p class="text-center"><a class="post-job-btn" ng-click="dashboard.postJobModal()" href="#">Post a Job</a></p>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<div class="filter-content">
+						<div class="filter-content-section">
+							<h4 class="title">Service</h4>
+							<p class="cursor"> <a href="" ng-click="toggleFilters()">+ Show categories</a> </p>
+							<ul class="categories filter-list" id="first-filter">
+								<li class="cursor show" ng-repeat="category in dashboard.categories" ng-click="dashboard.category_filter=category;dashboard.type(category);">{{category}}</li>
+							</ul>
+						</div>
+						<div class="filter-content-section">
+							<h4 class="title">Location</h4>
+							<p>
+								<span>Zip code</span><br>
+								<input type="text" ng-model="dashboard.zip_filter">
+							</p>
+							<p>
+								<span>Distance Range</span>
+							</p>
+
+							<div class="slider slider-horizontal" style="width: 140px;">
+								<!-- <div class="slider-track"><div class="slider-selection" style="left: 0%; width: 20%;"></div>
+								<div class="slider-handle round" style="left: 20%;"></div>
+								<div class="slider-handle round hide" style="left: 0%;"></div>
+								</div>
+								<div class="tooltip top" style="top: -40px; left: -19px;">
+									<div class="tooltip-arrow"></div><div class="tooltip-inner">Current value: 2</div>
+								</div>
+								<input type="text" class="span2" value="4" id="sl1"> -->
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<section class="tab-menu-holder">
+					<div class="menu-tab">
+						<div class="seperator-tab active text-center">
+							<span class="tab-item cursor" ng-class="{'active':dashboard.tab=='urgent'}" ng-click="dashboard.tab='urgent'"><span ng-class="{'bottom-border':dashboard.tab=='urgent'}"></span>URGENT SIDEJOBS</span>
+							<span class="tab-item cursor" ng-class="{'active':dashboard.tab=='sidejob'}" ng-click="dashboard.tab='sidejob'"><span ng-class="{'bottom-border':dashboard.tab=='sidejob'}"></span>SIDEJOBS</span>
+	
+						</div>
+					</div>
+				</section>
+
+
+				<div class="post-holder">
+					<div class="searchbox">
+						<div class="input-group custom-search-holder">
+							<input type="text" class="form-control custom-search" ng-model="dashboard.search_filter" placeholder="What services are you looking for...">
+							<span class="input-group-btn">
+								<button class="btn btn-post" type="button">SEARCH</button>
+							</span>
+						</div>
+					</div>
+					<div class="content" ng-if="dashboard.tab=='urgent'">
+						<div class="row">
+
+							<div class="col-md-4 col-sm-6" ng-repeat="job in dashboard.jobs" ng-show="dashboard.zip_filtering(job.ZIP) && dashboard.category_filtering(job.categories)" ng-hide="dashboard.isAppliedOrRejected(job.id) || (job.description.toUpperCase().search(dashboard.search_filter.toUpperCase())==-1 && !dashboard.search_filter=='')">
+
+								
+								<div class="dashboard-info-box">
+									<div class="featured-img">
+										<img class="img img-responsive" src="images/b3.jpg" height="100" alt="">
+										<img class="media-avatar" src="images/avatar_01_tn.png" width="34" height="34" alt="">
+									</div>
+									<div class="meta-info">
+											<p class="description-new">
+												{{job.description}}
+											</p>
+										<div class="row list-inline">
+											<!---<div><a href=""><i class="fa fa-heart-o"></i></a></li>-->
+											<div class="col-xs-3"><a href="" class="eg-time">54 m</a></div>
+											<div class="col-xs-4 text-center"><a href=""><i class="fa fa-close" style="color: red" ng-click="dashboard.reject(job.id)"></i>Not Interested</a></div>
+											<div class="col-xs-4 text-center"><a href=""><i class="fa fa-check" style="color: green" ng-click="dashboard.apply(job.id)"></i>Approve</a></div>
+										</div>
+									</div>
+								</div><!-- end .dashboard-info-box -->
+							</div>
+
+								<!--<div class="clearfix"></div>-->
+							<!-- <div class="col-md-4 col-sm-6">
+								<div class="dashboard-info-box">
+									<div class="media">
+										<a class="pull-left" href="#">
+											<img class="media-object media-avatar" src="images/avatar_08_tn.png" width="34" height="34" alt="">
+										</a>
+										<div class="media-body">
+											<h4 class="media-heading">Sam Jones</h4>
+											<p class="description">
+												How to get inspire the right way Design modo <a href="#">bilt/modo/test</a> Good stuff from here <a href="#">@design modo</a>
+											</p>
+										</div>
+									</div>
+									<div class="featured-img">
+										<img class="img img-responsive" src="images/b3.jpg" height="100" alt="">
+									</div>
+									<div class="meta-info">
+										<ul class="pull-right list-inline">
+											<li><a href="#"><i class="fa fa-reply"></i></a></li>
+											<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+											<li><a href="#">54 m</a></li>
+										</ul>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-md-4 col-sm-6">
+								<div class="clearfix"></div>
+
+								<div class="dashboard-info-box">
+									<div class="media">
+										<a class="pull-left" href="#">
+											<img class="media-object media-avatar" src="images/avatar_08_tn.png" width="34" height="34" alt="">
+										</a>
+										<div class="media-body">
+											<h4 class="media-heading">Sam Jones</h4>
+											<p class="description">
+												How to get inspire the right way Design modo <a href="#">bilt/modo/test</a> Good stuff from here <a href="#">@design modo</a>
+											</p>
+										</div>
+									</div>
+									<div class="featured-img">
+										<img class="img img-responsive" src="images/b3.jpg" height="100" alt="">
+									</div>
+									<div class="meta-info">
+										<ul class="pull-right list-inline">
+											<li><a href="#"><i class="fa fa-reply"></i></a></li>
+											<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+											<li><a href="#">54 m</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-6">
+								
+							</div> -->
+							
+							
+						</div>
+						<div class="text-center mt30">
+							<p><a class="more-jobs" href="#">Load More</a></p>
+						</div>
+					</div>
+
+					<div class="content" ng-if="dashboard.tab=='sidejob'">
+						<div class="row">
+							<div class="col-md-4 col-sm-6">
+								<div class="clearfix"></div>
+
+								<div class="dashboard-info-box">
+									<div class="media">
+										<a class="pull-left" href="#">
+											<img class="media-object media-avatar" src="images/avatar_01_tn.png" width="34" height="34" alt="">
+										</a>
+										<div class="media-body">
+											<h4 class="media-heading">Tony Hawk</h4>
+											<p class="description">
+												Here come job posts that are not so urgent <a href="#">bilt/modo/test</a> Good stuff from here <a href="#">@design modo</a>
+											</p>
+										</div>
+									</div>
+									<div class="featured-img">
+										<img class="img img-responsive" src="images/b3.jpg" height="100" alt="">
+									</div>
+									<div class="meta-info">
+										<ul class="pull-right list-inline">
+											<li><a href="#"><i class="fa fa-reply"></i></a></li>
+											<li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+											<li><a href="#">54 m</a></li>
+										</ul>
+									</div>
+								</div><!-- end .dashboard-info-box -->
+								
+							</div>
+
+							<div class="col-md-4 col-sm-6">
+								
+							</div>
+							<div class="col-md-4 col-sm-6">
+								
+							</div>
+							
+							
+						</div>
+						<div class="text-center mt30">
+							<p><a class="more-jobs" href="#">Load More</a></p>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+	<div class="modal fade topiraj" id="postjob_modal" tabindex="-1" role="dialog" aria-labelledby="postjob">
+       <div class="modal-dialog modal-sm" role="document">
+           <div class="modal-content">
+               <div class="modal-body">
+                   <div class="clearfix">
+                          <form>
+                               <div> 
+                                   <input type="text" class="form-control" id="title" placeholder="Title" />
+                                   <br>
+                                   <input type="text" class="form-control" id="description" placeholder="Description" />
+                                   <br>
+                                   <input type="text" class="form-control" id="description" placeholder="Owner" />
+                                   <br>
+                                   <input type="text" class="form-control" id="description" placeholder="Categories" />
+                                   <br>
+                                   <input type="text" class="form-control" id="description" placeholder="ZIP Code" />
+                               </div>
+                           </form>
+                           
+                   </div>
+
+               </div>
+                   <div class="modal-footer">
+                       <button  type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                       <button  type="button" class="btn btn-primary" data-dismiss="modal" ng-model="rename_clip" ng-click="renameClip()">Save</button>
+                   </div>
+           </div>
+       </div>
+    </div>

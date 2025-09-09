@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home</title>
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/base-styles.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="/css/navbar2.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+
+
+
+<style type="text/css">
+  @media(min-width:768px){
+  .modal-dialog{
+    width: 300px;
+    padding-top: 5%;
+  }
+  #emailsignup .modal-dialog{
+    padding-top: 0%;
+  }
+}
+ .modal-content{
+    float: left;
+    border-radius: 2px;
+  }
+  .form-control-icon{
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    z-index: 2;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    pointer-events: none;
+  }
+  .btn-fb{
+    border-color: #3B5998;
+    border-bottom-color: #263a63;
+    background-color: #3B5998;
+    color: #fff;
+  }
+  .btn-social{
+    border-radius: 2px;
+    width: 100%;
+    /*min-height: 46px;*/
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    font-family: georgia;
+    padding: 9px 27px;
+    margin-bottom: 10px;
+  }
+  .dob-right{
+    padding-right: 1px;
+  }
+  .dob-left{
+    padding-left: 1px;
+  }
+  .dob-both{
+    padding-left: 1px;
+    padding-right:1px;
+  }
+  .modal-form.field-control{
+    width: 100%;
+  }
+  .color-link-red a{
+    color: #ff5a5f;
+  }
+  .btn-red{
+    background-color: #ff5a5f;
+    color: #FFF;
+  }
+  .btn-red:hover{
+  background-color: #ff5a5f;
+    color: #FFF;
+    
+  }
+  .text-small{
+    font-size: 12px;
+    font-weight: normal;
+  }
+  .social-icon{
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  /* Custom header */
+.custom-header{
+   background: #fff;
+   max-height: 50px;
+}
+
+.custom-header img{
+    max-height: 75px;
+}
+.navbar-brand {
+    padding: 0;
+}
+
+.header-btn{
+    float: right;
+    /*margin-top: 20px;*/
+    margin-left: 5px;
+    padding:8px 17px;
+    background: #009cde;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
+.header-btn:hover{
+    text-decoration: none;
+     color: #fff;
+     opacity: 0.80;
+     transition:all 0.3s;
+}
+.header-btn.signup{
+    background: #dddddd;
+    color: #33333d;
+}
+
+.profile-anchor {
+  width: 53px;
+  height: auto;
+  border-radius:50px;
+  float:right;
+}
+
+
+
+@media only screen and (min-width:479px) and (max-width:559px) {
+    .header-btn{
+         margin-top: 19px;
+    } 
+}
+
+@media only screen and (max-width:479px) {
+    .custom-header img{
+        min-height: 70px;
+    }
+    .header-btn{ 
+        float: none; 
+        display: block;
+        margin: 0;
+        padding:5px 14px;                
+    }
+    .header-btn.signup{
+        margin-top: 4px;
+        margin-bottom: 2px;
+    } 
+}
+</style>
+</head>
+<body style="padding-top: 0">
+
+<!-- Signup/Signin Modal -->
+<div class="modal fade" id="signup">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+      <div class="col-md-12">
+      <a href="/auth/facebook" class="btn btn-fb btn-social"><i class="fa fa-facebook social-icon"></i> Signup with Facebook</a></div>
+      <div class="col-md-12">
+      <a href="/auth/google" class="btn btn-default btn-social"><i class="fa fa-google social-icon"></i> Signup with Google</a></div>
+              <div class="col-md-12">
+              <p class="text-center">or</p>
+              </div>
+              <div class="col-md-12">
+      <button type="button" data-target="#emailsignup" data-toggle="modal" class="btn btn-default btn-social" data-dismiss="modal"><i class="fa fa-envelope social-icon"></i> Signup with Email</button></div>
+      <div class="col-md-12">
+      <p class="text-small color-link-red">By signing up, I agree to site's <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, <a href="#">Guest Refund Policy</a>, and <a href="#">Host Guarantee Terms</a>.</p>
+      </div>
+      <div class="col-md-12">
+      <hr/>
+      </div>
+            <div class="col-md-12">
+           <p class="text-center text-small color-link-red"> already have an account? <a href="#" data-toggle="modal" data-target="#signin" data-dismiss="modal">Login</a></p>
+      </div>
+      </div>
+          </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="emailsignup">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+      <div class="col-md-12 text-center">
+      <p class="text-center color-link-red">Signup with <a href="/auth/google">Google</a> or  <a href="/auth/facebook"> Signup with Facebook</a></p>
+      or
+      
+      </div>
+         <form action="/signup" method="POST" role="form">
+          <div class="col-md-12">
+          <div class="form-group">
+            <input type="text" class="modal-form field-control" id="" placeholder="First Name" name="firstName" aria-describedby="inputSuccess2Status">
+             <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
+  <span id="inputSuccess2Status" class="sr-only">(success)</span>
+          </div>
+        </div>
+          <div class="col-md-12">
+          <div class="form-group">
+            <input type="text" class="modal-form field-control" id="" placeholder="Last Name" name="lastName" aria-describedby="inputSuccess2Status">
+             <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
+  <span id="inputSuccess2Status" class="sr-only">(success)</span>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <input type="text" class="modal-form field-control" id="" placeholder="Skills" name="skills" aria-describedby="inputSuccess2Status">
+             <span class="fa fa-graduation-cap form-control-icon" aria-hidden="true"></span>
+  <span id="inputSuccess2Status" class="sr-only">(success)</span>
+          </div>
+        </div>
+         <div class="col-md-12">
+          <div class="form-group">
+            <input type="email" name="email" class="modal-form field-control" id="" placeholder="Email Address" aria-describedby="inputSuccess2Status">
+             <span class="fa fa-envelope form-control-icon" aria-hidden="true"></span>
+  <span id="inputSuccess2Status" class="sr-only">(success)</span>
+          </div>
+        </div> <div class="col-md-12">
+          <div class="form-group">
+            <input type="password" class="modal-form field-control" id="" placeholder="Password" name="password" aria-describedby="inputSuccess2Status">
+             <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
+  <span id="inputSuccess2Status" class="sr-only">(success)</span>
+          </div>
+        </div>
+         <div class="col-md-4 dob-right">
+          <div class="form-group">
+            <select class="field-control" name="dobMonth"><option value="0">Month</option>
+            <option value="1">1</option></select> 
+          </div>
+        </div>
+         <div class="col-md-4 dob-both">
+          <div class="form-group">
+            <select class="field-control" name="dobDay"><option value="0">Day</option>
+            <option value="1">1</option></select> 
+          </div>
+        </div>
+         <div class="col-md-4 dob-left">
+          <div class="form-group">
+           <select class="field-control" name="dobYear"><option value="0">Year</option>
+           <option value="1">1</option></select> 
+          </div>
+        </div>
+              <div class="col-md-12">
+              <div class="form-group">
+                <label class="text-small"><input type="checkbox"> I’d like to receive coupons and inspiration</label>
+              </div>
+      </div>
+
+      <div class="col-md-12">
+      <p class="text-small color-link-red">By signing up, I agree to site's <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, <a href="#">Guest Refund Policy</a>, and <a href="#">Host Guarantee Terms</a>.</p>
+      </div>
+
+         <div class="col-md-12">
+          <div class="form-group">
+            <input type="submit" class="btn btn-social btn-default btn-red" value="Register">
+          </div>
+        </div>
+        </form>
+        <div class="col-md-12">
+        <hr/>
+        <p class="color-link-red">already a site user? <a href="#" data-target="#signin" data-toggle="modal" data-dismiss="modal">Sign in</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="signin">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+         <form action="/signin" method="POST" role="form">
+         <div class="col-md-12">
+      <a href="/auth/facebook" class="btn btn-fb btn-social"><i class="fa fa-facebook social-icon"></i> Signin with Facebook</a></div>
+      <div class="col-md-12">
+      <a href="/auth/google" class="btn btn-default btn-social"><i class="fa fa-google social-icon"></i> Signin with Google</a></div>
+              <div class="col-md-12">
+              <p class="text-center">or</p>
+              </div>
+         <div class="col-md-12">
+          <div class="form-group">
+            <input type="email" class="modal-form field-control" id="" placeholder="Email Address" name="email" aria-describedby="inputSuccess2Status">
+             <span class="fa fa-envelope form-control-icon" aria-hidden="true"></span>
+  <span id="inputSuccess2Status" class="sr-only">(success)</span>
+          </div>
+        </div> <div class="col-md-12">
+          <div class="form-group">
+            <input type="password" name="password" class="modal-form field-control" id="" placeholder="Password" aria-describedby="inputSuccess2Status">
+             <span class="fa fa-lock form-control-icon" aria-hidden="true"></span>
+  <span id="inputSuccess2Status" class="sr-only">(success)</span>
+          </div>
+        </div>
+         
+        
+              <div class="col-md-12">
+              <div class="form-group"><div class="pull-left">
+                <label class="text-small"><input type="checkbox"> Remember Me</label></div>
+                <div class="pull-right"><a href="#" data-target="#fpassword" data-toggle="modal"  class="color-link-red">
+                Forgot Password?</a></div>
+              </div>
+      </div>
+
+      
+         <div class="col-md-12">
+          <div class="form-group">
+            <input type="submit" name="submit" class="btn btn-social btn-default btn-red" value="Signin">
+          </div>
+        </div>
+        </form>
+        <div class="col-md-12">
+        <hr/>
+        <p class="color-link-red">do not have an account?<a href="#" data-toggle="modal" data-target="#signup" data-dismiss="modal">Signup</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Signup/Signin Modal -->
+<div class="main-wrap">
+
+
+
+   <header id="top-header" class="site-head custom-header">
+
+       <div class="hub-overlay-nav-left-trigger" href="" onclick="toggleFirstMenu()">
+            <span class="hub-menu-icon"></span>
+       </div>
+
+      {{#if user}}
+       <div class="sidebar-content" id="first-menu-content">
+           <ul class="sidebar-links">
+               <li> <a href="/">Home</a> </li>
+               <li> <a href="" data-toggle="modal" >Alerts</a> </li>
+               <li> <a href="/message" data-toggle="modal" >Inbox</a> </li>
+               <li> <a href="">Help</a> </li>
+           </ul>
+       </div>
+      {{else}}
+       <div class="sidebar-content" id="first-menu-content">
+           <ul class="sidebar-links">
+               <li> <a href="">Home</a> </li>
+               <li> <a href="#" data-toggle="modal" href="#" data-target="#signup">Sign Up</a> </li>
+               <li> <a href="#" data-toggle="modal" href="#" data-target="#signin">Login</a> </li>
+               <li> <a href="">Help</a> </li>
+           </ul>
+       </div>
+      {{/if}}
+
+       <div class="container">
+        <div class="row">
+
+
+
+          <div class="col-xs-6">
+            <a href="#" class="inverse navbar-brand">Sidejob <!-- <img class="img-responsive" src="images/nav-logo.png" height="20px"> --> </a>
+          </div><!-- end .6 -->
+          <div class="col-xs-6">
+            {{#if user}}
+            <!--<a href="/account" id="home-page-logo" class="profile-anchor"><img class="profile-anchor" src="{{user.avatar}}" alt="profile pic" /></a>-->
+	          <a href="/logout" class="header-user">Logout</a>
+            
+            <a href="/message#/profile" class="header-user">Hello {{user.firstName}}</a>
+	          
+            {{else}}
+            <a href="#" class="header-btn signup" data-toggle="modal" href="#" data-target="#signup">Sign Up</a>
+            <a href="#" class="header-btn" data-toggle="modal" href="#" data-target="#signin">Login</a>
+            {{/if}}
+          </div>
+        </div>
+  
+      </div>
+     
+   </header>
+{{{body}}}
+    
+    
+<footer class="footer-main-outer">
+   <div class="footer-container">
+       <div class="container">
+         <div class="row footer-linkrow">
+        
+                <a class="link-contrast" href="#">About</a>
+                <a class="link-contrast" href="#">Blog</a>
+                <a class="link-contrast" href="#">Jobs</a>
+                <a class="link-contrast" href="#">Terms</a>
+                <a class="link-contrast" href="#">Privacy</a>
+                <a class="link-contrast" href="#">Help &amp; Support</a>
+
+        
+            <div class="clearfix"></div>
+          </div>
+           
+          <section class="foot-social-icon">
+              <div class="social-icons">
+                <ul>
+                    <li><a href="#" class="non-margin"><i class="fa fa-md fa-facebook"></i></a></li>
+                    <li><a href="#" class="non-margin"><i class="fa fa-md fa-twitter"></i></a></li>
+                    <li><a href="#" class="non-margin"><i class="fa fa-md fa-instagram"></i></a></li> 
+                 </ul>
+              </div>
+             <p class="copyright-txt">&copy; 2016 SideJob</p>      
+          </section>
+          
+
+    </div>
+  </div>
+</footer>
+<script  src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/custom.js"></script>
+    <script type="text/javascript" src="css/js/navbar.js"></script>
+
+</body>
+</html>

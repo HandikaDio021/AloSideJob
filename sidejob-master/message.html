@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sidejob</title>
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/base-styles.css">
+	<link rel="stylesheet" href="css/modules.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<link rel="stylesheet" href="css/navbar2.css">
+	<link rel="stylesheet" href="css/searchbox.css">
+	<link rel="stylesheet" href="css/chat-ui.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-route.js"></script>
+	<script type="text/javascript" src="css/js/navbar.js"></script>
+	<script src="/js/bootstrap-slider.js"></script>
+	<script type="text/javascript" src="/js/ng-file-upload/ng-file-upload.js"></script>
+	<script type="text/javascript" src="/js/ng-file-upload/ng-file-upload-shim.js"></script>
+
+	<!-- <base href="/"> -->
+</head>
+<body ng-app="mainApp" ng-controller="mainController as main">
+	<div><!--wrapper-->
+	<header class="hub-header">      
+      <a class="hub-overlay-nav-left-trigger" href="" onclick="toggleFirstMenu()">
+         <span class="hub-menu-icon"></span>
+      </a>
+      <div class="hub-logo">
+         <a href="index.html" class="navbar-brand inverse">
+         	Sidejob
+            <!--<img src="images/nav-logo.png" alt="Hub">-->
+         </a>
+      </div>			
+      
+      <!-- SEARCH BOX -->
+      <div id="morphsearch" class="morphsearch">
+         <form class="morphsearch-form">            
+            <input class="morphsearch-input" type="search" placeholder="Search..."/>
+            <!--button class="morphsearch-submit" type="submit">Search</button-->
+
+         </form>
+         <!-- Auto complete search results -->
+         <div class="morphsearch-content">
+           
+         </div><!-- /morphsearch-content -->
+         <!-- End of Autocomplete search results -->
+         <span class="morphsearch-close"></span>
+	 
+
+      </div><!-- /morphsearch -->
+      <div class="morphsearch-overlay">
+
+      </div>
+      <!-- End of SEARCH BOX -->     
+
+
+      <ul class="top-head-list fonting">
+      	<li><a href="">Hello {{main.userName}}</a></li>
+      	<li><a href="/logout">Logout</a></li>
+      </ul>
+
+
+      <a class="hub-overlay-nav-right-trigger profile-anchor" href="" onclick="toggleSecondMenu()">
+         <img ng-src="{{userLogo}}" alt="profile pic" />
+      </a>
+
+
+        <div class="sidebar-content" id="first-menu-content">
+     	  <ul class="sidebar-links">
+     	 	<li> <a href="#/dashboard" ng-click="main.page='dashboard'">Home</a> </li>
+     	 	<li> <a href="">Alerts</a> </li>
+     	 	<li> <a href="#/message" ng-click="main.page='inbox'">Inbox</a> </li>
+     	 	<li> <a href="">Your Jobs</a> </li>
+     	 </ul>
+    	</div>
+
+    	 <div class="sidebar-content" id="second-menu-content">
+    	 	<ul class="sidebar-links">
+     	 	<li> <a href="">Link Five</a> </li>
+     	 	<li> <a href="">Link Six</a> </li>
+     	 	<li> <a href="">Link Seven</a> </li>
+     	 	<li> <a href="">Link Eight</a> </li>
+     	 </ul>
+
+    	</div><!-- end #second-menu-content -->
+      
+	</header>
+
+	<section class="dashboard-subheader">
+		<div class="container-fluid">
+			<div class="menus">
+				<ul class="list-inline">
+					<li class="cursor" ng-cloak ng-class="{'active':main.page=='dashboard'}"><a href="#/dashboard" class="tab-line" ng-click="main.page='dashboard'">DASHBOARD</a></li>
+					<li class="cursor" ng-cloak ng-class="{'active':main.page=='inbox'}"><a href="#/message" class="tab-line" ng-click="main.page='inbox'">INBOX</a></li>
+					<li class="cursor" ng-cloak ng-class="{'active':main.page=='explore'}"><a href="#/explore" class="tab-line" ng-click="main.page='explore'">EXPLORE</a></li>
+					<li class="cursor" ng-cloak ng-class="{'active':main.page=='profile'}"><a href="#/profile" class="tab-line" ng-click="main.page='profile'">PROFILE</a></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="banner Banner">
+		<div class="banner-title text-center">
+			<h3 class="title-header">{{main.page | uppercase}}</h3>
+		</div>
+	</section>
+</div><!--end wrapper-->
+
+<div ng-view><!--container-->
+	
+
+</div><!--end container-->
+	<footer class="chat-footer">
+		<div ng-repeat="user in main.users" id="{{user.name + user.id}}" class="chat-box chat-messages">
+			<div class="chat-box-handle" onclick="$(this).closest('.chat-box').toggleClass('open')">
+				<span class="status status-on"></span>
+				<span class="handle-title">{{user.name}}</span>
+				<span class="pull-right" style="margin-top:15px" ng-click="main.closeChatWindow('#' + user.name + user.id)">X</span>
+			</div>
+			<div id="chat-msgs{{user.name+user.id}}" class="chat-box-content">
+				<div ng-repeat="message in user.messages" class="media message">
+					<div class="media-left" ng-if="message.sender==main.user_">
+						<img class="media-object img-rounded" src="http://placehold.it/40x40/00ffff/00ffff" alt="User">
+					</div>
+					<div id="msg{{$index}}" class="media-body">
+						<p>{{message.msg}}</p>
+					</div>
+					<div class='media-right' ng-if="message.sender!=main.user_">
+						<img class='media-object img-rounded' src='http://placehold.it/40x40/ff00ff/ff00ff' alt='User'>
+					</div>
+				</div>
+			</div>
+
+			
+
+			<div class="input-cont">
+				<input type="text" id="chat-msg{{user.name+user.id}}" class="input-mes" placeholder="Type a message..." ng-keypress="main.sendMessage($event,'#chat-msg'+user.name+user.id,user.id)"/>
+			</div>
+		</div>
+		
+		<div class="chat-box open chat-userlist">
+			<div class="chat-box-handle" onclick="$(this).closest('.chat-box').toggleClass('open')">
+				<span class="handle-title"><b>User List</b></span>
+			</div>
+			<div class="chat-box-content">
+
+				<div ng-repeat="user in main.users" class="media userinfo">
+				  <div class="media-left">
+						<span class="status status-on"></span>
+				  </div>
+				  <div class="media-body" ng-click="main.openChatWindow('#' + user.name + user.id)">
+				    <b>{{user.name}}</b>
+				  </div>
+				</div>
+
+			</div>
+			<div class="input-cont">
+				<input type="text" class="input-mes" placeholder="" />
+			</div>
+		</div>
+	</footer>
+
+	<footer class="footer-main-outer footer-main-messages">
+		<div class="footer-container">
+			<div class="container">
+				<div class="row footer-linkrow">
+
+					<a class="link-contrast" href="#">About</a>
+					<a class="link-contrast" href="#">Blog</a>
+					<a class="link-contrast" href="#">Jobs</a>
+					<a class="link-contrast" href="#">Terms</a>
+					<a class="link-contrast" href="#">Privacy</a>
+					<a class="link-contrast" href="#">Help &amp; Support</a>
+
+
+					<div class="clearfix"></div>
+				</div>
+
+				<section class="foot-social-icon">
+					<div class="social-icons">
+						<ul>
+							<li><a href="#"><i class="fa fa-md fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-md fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-md fa-instagram"></i></a></li>
+						</ul>
+					</div>
+					<p class="copyright-txt">&copy; 2016 SideJob</p>
+				</section>
+
+
+			</div>
+		</div>
+	</footer>
+
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script src="/js/socket.io.js"></script>
+	<script type="text/javascript" src="js/main_app.js"></script>
+
+	
+</body>
+</html>
